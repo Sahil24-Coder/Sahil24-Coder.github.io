@@ -1,1 +1,855 @@
 <h1>HEllO FROM GITHUB</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahil Kumbhar - Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.6;
+            color: #00ff41;
+            background: #0a0a0a;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .portfolio-card {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 65, 0.3),
+                inset 0 0 20px rgba(0, 255, 65, 0.1);
+            overflow: hidden;
+            animation: terminalBoot 2s ease-out;
+            position: relative;
+        }
+
+        @keyframes terminalBoot {
+            0% { 
+                opacity: 0;
+                transform: scale(0.8);
+                box-shadow: 0 0 100px rgba(0, 255, 65, 0.8);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(0, 255, 65, 0.6);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            }
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff41, transparent);
+            animation: scanLine 3s linear infinite;
+        }
+
+        @keyframes scanLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #001100 0%, #003300 100%);
+            color: #00ff41;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            border-bottom: 2px solid #00ff41;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 65, 0.03) 2px,
+                    rgba(0, 255, 65, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .terminal-prompt {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .name {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #00ff41;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: #00ff41;
+            animation: nameUnderline 2s ease-out 1s forwards;
+        }
+
+        @keyframes nameUnderline {
+            to { width: 100%; }
+        }
+
+        .title {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            font-weight: 400;
+            color: #00cc33;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border: 1px solid #00ff41;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            background: rgba(0, 255, 65, 0.1);
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 255, 65, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            padding: 40px;
+            background: rgba(0, 20, 0, 0.3);
+        }
+
+        .section {
+            margin-bottom: 50px;
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            border-radius: 8px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #00ff41, #00cc33, #009922);
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #00ff41;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title i {
+            color: #00cc33;
+        }
+
+        .terminal-window {
+            background: #000;
+            border: 2px solid #00ff41;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .terminal-header {
+            background: #00ff41;
+            color: #000;
+            padding: 10px 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #000;
+        }
+
+        .terminal-content {
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.8;
+        }
+
+        .code-block {
+            background: rgba(0, 255, 65, 0.1);
+            border-left: 4px solid #00ff41;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .gpa-display {
+            background: linear-gradient(135deg, #003300, #006600);
+            color: #00ff41;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 15px;
+            border: 2px solid #00ff41;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .skills-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-terminal {
+            background: #000;
+            border: 2px solid #00ff41;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .skill-terminal:hover {
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .skill-header {
+            background: #00ff41;
+            color: #000;
+            padding: 12px 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-body {
+            padding: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tech-badge {
+            background: rgba(0, 255, 65, 0.2);
+            color: #00ff41;
+            padding: 8px 15px;
+            border: 1px solid #00ff41;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .tech-badge:hover {
+            background: rgba(0, 255, 65, 0.3);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+            transform: scale(1.05);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+        }
+
+        .project-terminal {
+            background: #000;
+            border: 2px solid #00ff41;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-terminal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .project-terminal:hover::before {
+            left: 100%;
+        }
+
+        .project-terminal:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+            transform: translateY(-8px);
+        }
+
+        .project-header {
+            background: #00ff41;
+            color: #000;
+            padding: 15px 20px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-lang {
+            background: #000;
+            color: #00ff41;
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            border: 1px solid #00ff41;
+        }
+
+        .project-body {
+            padding: 25px;
+            line-height: 1.8;
+        }
+
+        .achievement-list {
+            list-style: none;
+        }
+
+        .achievement-item {
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid #00ff41;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+            padding-left: 60px;
+        }
+
+        .achievement-item::before {
+            content: '>';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00ff41;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .achievement-item:hover {
+            background: rgba(0, 255, 65, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            transform: translateX(10px);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #001100 0%, #003300 100%);
+            color: #00ff41;
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+            border-top: 2px solid #00ff41;
+            position: relative;
+        }
+
+        .footer::before {
+            content: 'EOF';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.8em;
+            opacity: 0.6;
+        }
+
+        .matrix-text {
+            position: fixed;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #00ff41;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
+            animation: matrixFall 10s linear infinite;
+        }
+
+        @keyframes matrixFall {
+            0% { transform: translateY(-100vh); opacity: 0; }
+            10% { opacity: 0.1; }
+            90% { opacity: 0.1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        .loading-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 255, 65, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .loading-progress {
+            width: 0;
+            height: 100%;
+            background: #00ff41;
+            border-radius: 2px;
+            animation: loading 3s ease-out forwards;
+        }
+
+        @keyframes loading {
+            to { width: 100%; }
+        }
+
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch::before {
+            animation: glitch-1 0.3s infinite;
+            color: #ff0040;
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 0.3s infinite;
+            color: #00ffff;
+            z-index: -2;
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, 2px); }
+            80% { transform: translate(-2px, -2px); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .name {
+                font-size: 2.5em;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-matrix {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrix"></div>
+
+    <div class="container">
+        <div class="portfolio-card">
+            <header class="header">
+                <div class="terminal-prompt">
+                    <span style="color: #00cc33;">user@portfolio</span><span style="color: #ffffff;">:</span><span style="color: #3399ff;">~</span><span style="color: #ffffff;">$</span> cat sahil_kumbhar.profile<span class="cursor">█</span>
+                </div>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <h1 class="name glitch" data-text="SAHIL KUMBHAR">SAHIL KUMBHAR</h1>
+                <p class="title">CS&E (CYBER SECURITY) | STUDENT DEVELOPER</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-terminal"></i>
+                        <span>8591643811</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-at"></i>
+                        <span>sahilkumbhar2461@gmail.com</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <section class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        EDUCATION.SYS
+                    </h2>
+                    
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <div class="terminal-button"></div>
+                                <div class="terminal-button"></div>
+                                <div class="terminal-button"></div>
+                            </div>
+                            <span>education_records.log</span>
+                        </div>
+                        <div class="terminal-content">
+                            <div class="code-block">
+                                <strong>Bachelor of Engineering - CS&E (Cyber Security)</strong><br>
+                                Location: Thakur College of Engineering and Technology<br>
+                                University: Mumbai University | Expected: 2025<br>
+                                <div class="gpa-display">CGPA: 9.58 | S1: 9.48 | S2: 9.68</div>
+                            </div>
+                            
+                            <div class="code-block">
+                                <strong>MHT-CET 2024</strong><br>
+                                Percentile: 95.0382314<br>
+                                Status: [<span style="color: #00ff41;">QUALIFIED</span>]
+                            </div>
+                            
+                            <div class="code-block">
+                                <strong>Higher Secondary (HSC)</strong><br>
+                                Year: 2024 | Score: 80.83%<br>
+                                Status: [<span style="color: #00ff41;">PASSED</span>]
+                            </div>
+                            
+                            <div class="code-block">
+                                <strong>Secondary (SSC)</strong><br>
+                                Year: 2022 | Score: 84.8%<br>
+                                Status: [<span style="color: #00ff41;">PASSED</span>]
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-code"></i>
+                        TECH_STACK.JSON
+                    </h2>
+                    
+                    <div class="skills-matrix">
+                        <div class="skill-terminal">
+                            <div class="skill-header">
+                                <i class="fas fa-laptop-code"></i>
+                                Programming Languages
+                            </div>
+                            <div class="skill-body">
+                                <div class="code-block">
+                                    languages: ["C", "Java", "Python"]<br>
+                                    proficiency: "intermediate"<br>
+                                    status: "active"
+                                </div>
+                                <div class="tech-stack">
+                                    <span class="tech-badge">C</span>
+                                    <span class="tech-badge">Java</span>
+                                    <span class="tech-badge">Python</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-terminal">
+                            <div class="skill-header">
+                                <i class="fas fa-tools"></i>
+                                Development Tools
+                            </div>
+                            <div class="skill-body">
+                                <div class="code-block">
+                                    tools: ["MS Office", "Canva", "Google Workspace", "TensorFlow"]<br>
+                                    environment: "cross-platform"<br>
+                                    status: "configured"
+                                </div>
+                                <div class="tech-stack">
+                                    <span class="tech-badge">MS Office</span>
+                                    <span class="tech-badge">Canva</span>
+                                    <span class="tech-badge">Google Workspace</span>
+                                    <span class="tech-badge">TensorFlow</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-folder-open"></i>
+                        PROJECTS/
+                    </h2>
+                    
+                    <div class="project-grid">
+                        <div class="project-terminal">
+                            <div class="project-header">
+                                <span>inventory_management.exe</span>
+                                <span class="project-lang">C</span>
+                            </div>
+                            <div class="project-body">
+                                <div class="code-block">
+                                    // Advanced inventory management system<br>
+                                    #include &lt;stdio.h&gt;<br>
+                                    #include &lt;stdlib.h&gt;
+                                </div>
+                                <p>Engineered a comprehensive menu-driven application in C for efficient inventory management. Implemented advanced file handling techniques for data persistence, stock updates, and real-time inventory tracking with optimized search algorithms.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="project-terminal">
+                            <div class="project-header">
+                                <span>tic_tac_toe.java</span>
+                                <span class="project-lang">Java</span>
+                            </div>
+                            <div class="project-body">
+                                <div class="code-block">
+                                    // Interactive gaming application<br>
+                                    public class TicTacToe {<br>
+                                    &nbsp;&nbsp;private char[][] board;
+                                </div>
+                                <p>Developed an interactive two-player Tic Tac Toe game featuring clean GUI design, intelligent win detection algorithms, and robust game state management. Implemented object-oriented programming principles for scalable code architecture.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-briefcase"></i>
+                        EXPERIENCE.LOG
+                    </h2>
+                    
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <div class="terminal-button"></div>
+                                <div class="terminal-button"></div>
+                                <div class="terminal-button"></div>
+                            </div>
+                            <span>work_history.log</span>
+                        </div>
+                        <div class="terminal-content">
+                            <div class="code-block">
+                                <strong>[CURRENT] Junior Council Member</strong><br>
+                                Organization: TCET Student Development & Welfare<br>
+                                Role: Student Leadership & Campus Development<br>
+                                Status: [<span style="color: #00ff41;">ACTIVE</span>]
+                            </div>
+                            
+                            <div class="code-block">
+                                <strong>[2025-03 to 2025-04] AI Internship Program</strong><br>
+                                Company: 1stop.ai<br>
+                                Tech Stack: Python, TensorFlow, Machine Learning<br>
+                                Projects: 3 AI implementations<br>
+                                Status: [<span style="color: #00ff41;">COMPLETED</span>]
+                            </div>
+                            
+                            <div class="code-block">
+                                <strong>[2025-01] TCET Inhouse Internship</strong><br>
+                                Organization: Junoon Foundation<br>
+                                Focus: Public Welfare & Soft Skills Development<br>
+                                Impact: Community-driven projects<br>
+                                Status: [<span style="color: #00ff41;">COMPLETED</span>]
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-trophy"></i>
+                        ACHIEVEMENTS.TXT
+                    </h2>
+                    
+                    <ul class="achievement-list">
+                        <li class="achievement-item">
+                            Academic Excellence: Achieved SGPA of 9.48 (Semester 1) and 9.68 (Semester 2) demonstrating consistent high performance in Computer Science & Cybersecurity coursework
+                        </li>
+                        <li class="achievement-item">
+                            Continuous Learning: Maintained consistent academic excellence while actively participating in skill development programs and technical projects throughout engineering curriculum
+                        </li>
+                    </ul>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <p>&copy; 2025 Sahil Kumbhar | Compiled with passion for cybersecurity and innovation</p>
+                <p style="font-size: 0.8em; margin-top: 10px; opacity: 0.7;">$ exit 0</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Matrix rain effect
+        function createMatrixRain() {
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const columns = Math.floor(window.innerWidth / 20);
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const matrix = document.createElement('div');
+                    matrix.className = 'matrix-text';
+                    matrix.style.left = Math.random() * window.innerWidth + 'px';
+                    matrix.style.animationDelay = Math.random() * 10 + 's';
+                    matrix.textContent = chars[Math.floor(Math.random() * chars.length)];
+                    document.body.appendChild(matrix);
+                    
+                    setTimeout(() => {
+                        matrix.remove();
+                    }, 10000);
+                }, i * 200);
+            }
+        }
+
+        // Terminal typing effect
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize effects
+        window.addEventListener('load', () => {
+            createMatrixRain();
+            setInterval(createMatrixRain, 5000);
+        });
+
+        // Add scan line effect on scroll
+        let isScrolling = false;
+        window.addEventListener('scroll', () => {
+            if (!isScrolling) {
+                document.querySelector('.portfolio-card').style.boxShadow = '0 0 30px rgba(0, 255, 65, 0.5)';
+                isScrolling = true;
+                
+                setTimeout(() => {
+                    document.querySelector('.portfolio-card').style.boxShadow = '0 0 20px rgba(0, 255, 65, 0.3)';
+                    isScrolling = false;
+                }, 200);
+            }
+        });
+    </script>
+</body>
+</html>
